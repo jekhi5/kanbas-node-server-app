@@ -17,23 +17,20 @@ app.use(
     origin: process.env.NETLIFY_URL || 'http://localhost:3000',
   })
 );
-let sessionOptions = {
-  secret: process.env.SESSION_SECRET || 'kanbas',
+const sessionOptions = {
+  secret: process.env.SESSION_SECRET || "kanbas",
   resave: false,
   saveUninitialized: false,
 };
-if (process.env.NODE_ENV !== 'development') {
-  sessionOptions = {
-    ...sessionOptions,
-    proxy: true,
-    cookie: {
-      sameSite: 'none',
-      secure: true,
-      domain: process.env.NODE_SERVER_DOMAIN,
-    },
+
+if (process.env.NODE_ENV !== "development") {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+    domain: process.env.NODE_SERVER_DOMAIN,
   };
 }
-
 app.use(session(sessionOptions));
 app.use(express.json());
 
