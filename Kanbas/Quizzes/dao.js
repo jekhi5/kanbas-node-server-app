@@ -1,8 +1,18 @@
-import Database from '../Database/index.js';
+import model from "./model.js";
 
-export function updateQuizAnswer(qid, idx, answer) {
-    const { quizzes } = Database;
-    const quiz = quizzes.find((quiz) => quiz._id === qid);
-    quiz.answerChoices[idx] = { ...quiz.answerChoices[idx], ...answer };
-    return quiz;
+export function findQuizzesForCourse(courseId) {
+    return model.find({ course: courseId });
+}
+
+export function createQuiz(quiz) {
+    delete quiz._id
+    return model.create(quiz);
+}
+
+export function deleteQuiz(quizId) {
+    return model.deleteOne({ _id: quizId })
+}
+
+export function updateQuiz(quizID, quizUpdates) {
+    return model.updateOne({ _id: quizID }, { $set: quizUpdates })
 }
