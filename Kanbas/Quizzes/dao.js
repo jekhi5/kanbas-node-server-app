@@ -1,5 +1,9 @@
 import model from "./model.js";
 
+export function findAllQuizzes(courseId) {
+    return model.find();
+}
+
 export function findQuizzesForCourse(courseId) {
     return model.find({ course: courseId });
 }
