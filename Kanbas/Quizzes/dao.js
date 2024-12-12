@@ -1,9 +1,10 @@
 import model from "./model.js";
+import questionsModel from './Questions/model.js'
 export function findAllQuizzes() {
-    return model.find();
+    return model.find().populate('questions');
 }
 export function findQuizzesForCourse(courseId) {
-    return model.find({ course: courseId });
+    return model.find({ course: courseId }).populate('questions');
 }
 
 export function createQuiz(quiz) {
