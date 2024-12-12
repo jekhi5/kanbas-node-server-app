@@ -16,7 +16,7 @@ const questionsSchema = new mongoose.Schema(
       required: false
     }],
   },
-  { collection: "quizzes" }
+  { collection: "quizQuestions" }
 );
 export default questionsSchema;
 
