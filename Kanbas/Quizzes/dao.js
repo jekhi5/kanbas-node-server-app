@@ -1,15 +1,13 @@
 import model from "./model.js";
-import questionsModel from './Questions/model.js'
 export function findAllQuizzes() {
-    return model.find().populate('questions');
+    return model.find()
 }
 export function findQuizzesForCourse(courseId) {
-    return model.find({ course: courseId }).populate('questions');
+    return model.find({ course: courseId })
 }
 
 export async function createQuiz(quiz) {
     delete quiz._id
-    await Promise.all(quiz.questions.map(async question => await questionsModel.create(question)))
     return model.create(quiz);
 }
 
