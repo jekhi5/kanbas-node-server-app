@@ -4,7 +4,7 @@ const questionsSchema = new mongoose.Schema(
     questionText: { type: String, required: true, default: 'Empty Question' },
     type: {
       type: String,
-      enum: ["True-False", "Multiple-Choice", "Open-Response"],
+      enum: ["True-False", "Multiple-Choice", "Open-Response", "Fill-In-The-Blank"],
       required: true
     },
     points: { type: Number, required: true, default: 0 },
