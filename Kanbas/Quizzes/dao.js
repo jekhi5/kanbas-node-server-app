@@ -7,8 +7,9 @@ export function findQuizzesForCourse(courseId) {
     return model.find({ course: courseId }).populate('questions');
 }
 
-export function createQuiz(quiz) {
+export async function createQuiz(quiz) {
     delete quiz._id
+    await Promise.all(quiz.questions.map(async question => await questionsModel.create(question)))
     return model.create(quiz);
 }
 
