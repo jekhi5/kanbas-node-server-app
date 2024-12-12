@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 const quizzesSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, default: "Untitled Quiz" },
+    course: { type: mongoose.Schema.Types.ObjectId, ref: "CourseModel", required: true },
     releaseDate: { type: mongoose.Schema.Types.Date, required: false },
     dueDate: { type: mongoose.Schema.Types.Date, required: false },
     points: Number,
