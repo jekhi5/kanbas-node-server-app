@@ -41,7 +41,25 @@ const quizzesSchema = new mongoose.Schema(
     requireToViewResults: { type: Boolean, required: true, default: false },
     requireWebcam: { type: Boolean, required: true, default: false },
     lockAfterAnswering: { type: Boolean, required: true, default: false },
-    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'QuizQuestionModel', required: true }]
+    questions: [
+      {
+        questionNumber: { type: Number, required: true },
+        questionText: { type: String, required: true, default: 'Empty Question' },
+        type: {
+          type: String,
+          enum: ["True-False", "Multiple-Choice", "Open-Response", "Fill-In-The-Blank"],
+          required: true
+        },
+        points: { type: Number, required: true, default: 0 },
+        answerChoices: [{
+          type: {
+            choice: { type: String, required: true, default: "Empty Answer" },
+            isCorrect: { type: Boolean, required: true }
+          },
+          required: false
+        }],
+      },
+    ]
   },
   { collection: "quizzes" }
 );
